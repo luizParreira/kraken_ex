@@ -11,7 +11,7 @@ defmodule KrakenEx.ServerTime do
     DateTime.from_unix(result["unixtime"])
   end
 
-  defp _parse_body(%{"error" => errors, "result" => result}) do
+  defp _parse_body(%{"error" => errors}) do
     {:error, errors}
   end
 end
