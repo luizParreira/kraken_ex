@@ -11,7 +11,7 @@ defmodule KrakenEx.Assets do
   defp _parse_response(other_response), do: other_response
 
   defp _parse_body(%{"error" => [], "result" => result}), do: {:ok, result}
-  defp _parse_body(%{"error" => errors, "result" => result}) do
+  defp _parse_body(%{"error" => errors}) do
     {:error, errors}
   end
 end
