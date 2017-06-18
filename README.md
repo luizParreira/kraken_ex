@@ -1,6 +1,6 @@
 # KrakenEx
 
-**TODO: Add description**
+[WIP] Mix package delivering a wrapper around [Kraken Bitcoing Exchange][https://www.kraken.com] [API](https://www.kraken.com/help/api).
 
 ## Installation
 
