@@ -17,5 +17,8 @@ defmodule KrakenEx do
   end
 
   defdelegate server_time, to: KrakenEx.ServerTime
+  defdelegate assets, to: KrakenEx.Assets
   defdelegate assets(assets), to: KrakenEx.Assets
+  defdelegate asset_pairs, to: KrakenEx.AssetPairs
+  defdelegate asset_pairs(options), to: KrakenEx.AssetPairs
 end
