@@ -1,0 +1,29 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.kraken.com/0/public/Time"
+    },
+    "response": {
+      "body": "{\"error\":[],\"result\":{\"unixtime\":1497807620,\"rfc1123\":\"Sun, 18 Jun 17 17:40:20 +0000\"}}",
+      "headers": {
+        "Date": "Sun, 18 Jun 2017 17:40:11 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=de55062579aae5b9a7411a3ef7e5bbb441497807610; expires=Mon, 18-Jun-18 17:40:10 GMT; path=/; domain=.kraken.com; HttpOnly",
+        "Cache-Control": "no-cache,max-age=0",
+        "Vary": "Accept-Encoding",
+        "CF-Cache-Status": "MISS",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "3710083c7d2a4bf9-GRU"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]
