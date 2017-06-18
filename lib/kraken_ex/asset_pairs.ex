@@ -13,6 +13,8 @@ defmodule KrakenEx.AssetPairs do
     uri <> encode_query(params)
   end
 
+  defp encode_query(%{}), do: ""
+
   defp encode_query(%{pair: pair, info: info}) do
     "?pair=#{pair}&info=#{info}"
   end
