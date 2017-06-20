@@ -1,0 +1,29 @@
+[
+  {
+    "request": {
+      "body": "",
+      "headers": [],
+      "method": "get",
+      "options": [],
+      "request_body": "",
+      "url": "https://api.kraken.com/0/public/AssetPairs?info=leverage&pair=XXBTZJPY, XZECZUSD, XETCZUSD, XREPXETH"
+    },
+    "response": {
+      "body": "{\"error\":[],\"result\":{\"XETCZUSD\":{\"leverage_buy\":[2],\"leverage_sell\":[2]},\"XREPXETH\":{\"leverage_buy\":[2],\"leverage_sell\":[2]},\"XXBTZJPY\":{\"leverage_buy\":[],\"leverage_sell\":[]},\"XZECZUSD\":{\"leverage_buy\":[],\"leverage_sell\":[]}}}",
+      "headers": {
+        "Date": "Tue, 20 Jun 2017 00:33:40 GMT",
+        "Content-Type": "application/json; charset=utf-8",
+        "Transfer-Encoding": "chunked",
+        "Connection": "keep-alive",
+        "Set-Cookie": "__cfduid=db5181c232da387c5c72490cc4acc710b1497918819; expires=Wed, 20-Jun-18 00:33:39 GMT; path=/; domain=.kraken.com; HttpOnly",
+        "Cache-Control": "public,max-age=60,smaxage=60",
+        "Vary": "Accept-Encoding",
+        "CF-Cache-Status": "MISS",
+        "Server": "cloudflare-nginx",
+        "CF-RAY": "371aa34d3c0e4be1-GRU"
+      },
+      "status_code": 200,
+      "type": "ok"
+    }
+  }
+]

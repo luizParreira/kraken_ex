@@ -1,40 +1,23 @@
 defmodule KrakenEx.AssetPairs do
   alias KrakenEx.PublicClient
   @asset_pairs "AssetPairs"
-  def asset_pairs(opts \\ %{}) do
+  def asset_pairs(opts \\ []) do
     @asset_pairs
-    |> compose_url(opts)
+    |> compose_url(opts[:info], opts[:pairs])
     |> PublicClient.get
     |> parse_response
   end
 
-  defp compose_url(uri, opts) do
-    params = encode_params(opts)
-    uri <> encode_query(params)
+  defp compose_url(uri, nil, nil), do: uri
+  defp compose_url(uri, nil, pair) when  is_list(pair) do
+    "#{uri}?pair=#{parse_pair(pair)}"
   end
-
-  defp encode_query(%{}), do: ""
-
-  defp encode_query(%{pair: pair, info: info}) do
-    "?pair=#{pair}&info=#{info}"
+  defp compose_url(uri, nil, pair), do: "#{uri}?pair=#{pair}"
+  defp compose_url(uri, info, nil), do: "#{uri}?info=#{info}"
+  defp compose_url(uri, info, pair) when is_list(pair) do
+    "#{uri}?info=#{info}&pair=#{parse_pair(pair)}"
   end
-
-  defp encode_query(%{pair: pair}) do
-    "?pair=#{pair}"
-  end
-
-  defp encode_query(%{info: info}) do
-    "?info=#{info}"
-  end
-
-  defp encode_params(%{pair: pair, info: info}) do
-    %{ pair: parse_pair(pair), info: info }
-  end
-
-  defp encode_params(%{pair: pair}) do
-    %{ pair: parse_pair(pair) }
-  end
-  defp encode_params(params), do: params
+  defp compose_url(uri, info, pair), do: "#{uri}?info=#{info}&pair=#{pair}"
 
   defp parse_pair(pairs), do: Enum.join(pairs, ", ")
 
