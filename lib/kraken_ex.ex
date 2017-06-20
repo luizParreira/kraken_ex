@@ -24,4 +24,5 @@ defmodule KrakenEx do
   defdelegate asset_pairs(options), to: KrakenEx.AssetPairs
   defdelegate ohlc(pair, opts), to: KrakenEx.OHLC
   defdelegate ohlc(pair), to: KrakenEx.OHLC
+  defdelegate ticker(opts), to: KrakenEx.Ticker
 end
