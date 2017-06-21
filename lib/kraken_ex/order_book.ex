@@ -52,6 +52,7 @@ defmodule KrakenEx.OrderBook do
   defp compose_url(method, pair, nil), do: "#{method}?pair=#{pair}"
 
   defp parse_response({:ok, response}), do: parse_body(response.body)
+  defp parse_response(other_response), do: other_response
   defp parse_body(%{"error" => [], "result" => result}) do
     {:ok, result}
   end
