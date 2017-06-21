@@ -9,7 +9,7 @@ defmodule KrakenEx.Spread do
     since: return trade data since given id (optional.  exclusive)
 
   returns
-    Success: `{:ok, ohlc_data}`.
+    Success: `{:ok, spread_data}`.
     Fail:    `{:error, errors}`
 
   # Examples

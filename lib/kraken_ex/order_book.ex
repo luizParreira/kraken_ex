@@ -1,7 +1,7 @@
 defmodule KrakenEx.OrderBook do
 
   @moduledoc  """
-  This module gets OHLC data from Kraken's public API.
+  This module gets the order book data from Kraken's public API.
   """
 
   @doc """
