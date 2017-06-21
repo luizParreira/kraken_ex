@@ -29,4 +29,6 @@ defmodule KrakenEx do
   defdelegate order_book(pair), to: KrakenEx.OrderBook
   defdelegate trades(pair, since), to: KrakenEx.Trades
   defdelegate trades(pair), to: KrakenEx.Trades
+  defdelegate spread(pair, since), to: KrakenEx.Spread
+  defdelegate spread(pair), to: KrakenEx.Spread
 end
