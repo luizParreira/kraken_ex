@@ -1,6 +1,6 @@
 defmodule KrakenEx.AssetPairs do
   @moduledoc  """
-  This module gets recent `AssetPairs` data from Kraken's public API.
+  This module gets tradeable `AssetPairs` data from Kraken's public API.
   """
 
   @doc """
