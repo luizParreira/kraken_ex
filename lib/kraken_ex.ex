@@ -25,4 +25,6 @@ defmodule KrakenEx do
   defdelegate ohlc(pair, opts), to: KrakenEx.OHLC
   defdelegate ohlc(pair), to: KrakenEx.OHLC
   defdelegate ticker(opts), to: KrakenEx.Ticker
+  defdelegate order_book(pair, count), to: KrakenEx.OrderBook
+  defdelegate order_book(pair), to: KrakenEx.OrderBook
 end
