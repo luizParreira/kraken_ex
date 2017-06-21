@@ -27,4 +27,6 @@ defmodule KrakenEx do
   defdelegate ticker(opts), to: KrakenEx.Ticker
   defdelegate order_book(pair, count), to: KrakenEx.OrderBook
   defdelegate order_book(pair), to: KrakenEx.OrderBook
+  defdelegate trades(pair, since), to: KrakenEx.Trades
+  defdelegate trades(pair), to: KrakenEx.Trades
 end
