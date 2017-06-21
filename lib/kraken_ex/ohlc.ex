@@ -2,12 +2,6 @@ defmodule KrakenEx.OHLC do
   @moduledoc  """
   This module gets OHLC data from Kraken's public API.
   """
-  alias KrakenEx.{
-    PublicClient,
-    PairRequiredParamError
-  }
-
-  @method "OHLC"
 
   @doc """
   Gets OHLC data based on:
@@ -35,19 +29,22 @@ defmodule KrakenEx.OHLC do
   # More info
    You can find more info on Kraken's own [documentation](https://www.kraken.com/help/api#get-ohlc-data).
   """
+
+  alias KrakenEx.{
+    PublicClient,
+    PairRequiredParamError
+  }
+
+  @method "OHLC"
+
   def ohlc(pair, opts \\ []) do
     @method
-    |> compose_url(fetch_pair(pair), opts[:interval], opts[:since])
+    |> compose_url(pair[:pair], opts[:interval], opts[:since])
     |> PublicClient.get
     |> parse_response
   end
 
-  defp fetch_pair(pair) do
-    case Keyword.fetch(pair, :pair) do
-      :error -> raise PairRequiredParamError
-      {:ok, val} -> val
-    end
-  end
+  defp compose_url(method, nil, _, _), do: raise PairRequiredParamError
   defp compose_url(method, pair, nil, nil), do: "#{method}?pair=#{pair}"
   defp compose_url(method, pair, interval, nil), do: "#{method}?pair=#{pair}&interval=#{interval}"
   defp compose_url(method, pair, nil, since), do: "#{method}?pair=#{pair}&since=#{since}"
