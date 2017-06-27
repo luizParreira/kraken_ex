@@ -31,4 +31,7 @@ defmodule KrakenEx do
   defdelegate trades(pair), to: KrakenEx.Trades
   defdelegate spread(pair, since), to: KrakenEx.Spread
   defdelegate spread(pair), to: KrakenEx.Spread
+
+  # Private Methods:
+  defdelegate balance, to: KrakenEx.Balance
 end
