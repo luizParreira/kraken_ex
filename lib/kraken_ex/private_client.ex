@@ -5,10 +5,14 @@ defmodule KrakenEx.PrivateClient do
 
   @base_url "https://api.kraken.com/" <> @api_version <> "/private/"
   def process_url(url) do
+    IO.puts "URL"
+    IO.puts url
     @base_url <> url
   end
 
   def process_response_body(body) do
+    IO.puts "body"
+    IO.puts body
     Poison.decode! body
   end
 

@@ -4,12 +4,19 @@ defmodule KrakenEx.Authentication do
 
   @base_path "/" <> @api_version <> "/private/"
 
+  # Authentication with kraken happens the following way:
+  #
+  #   1. Get the SHA256(nonce + POST data)
+  #   2. Get the URI path
+  #   3. HMAC-SHA512 (2. + 1.) and base64 decoded secret key API key
+  #
+
   def generate_signature(method, params) do
-    key = KrakenEx.private_key |> Base.decode64!(case: :lower)
-    message = generate_message(method, params, nonce)
+    key = KrakenEx.private_key |> Base.decode64!
+    message = generate_message(method, params)
     IO.puts "Message"
-    IO.puts message
-    :sha512 |> :crypto.hmac(key, message) |> Base.encode64(case: :lower)
+    IO.inspect message
+    :sha512 |> :crypto.hmac(key, message) |> Base.encode64
   end
 
   # Generate a 64-bit nonce where the 48 high bits come directly from the current
@@ -18,18 +25,11 @@ defmodule KrakenEx.Authentication do
   # monotonically increasing nonce value. This approach splits the difference.
   # Nonce implementation based on:
   # https://github.com/leishman/kraken_ruby/blob/master/lib/kraken_ruby/client.rb#L150
-  defp nonce do
-    DateTime.to_unix(DateTime.utc_now, :millisecond) <<< 10 |> Integer.to_string
-  end
 
-  defp generate_message(method, params, input_nonce) do
-    digest = :crypto.hash_init(:sha256)
-          |> :crypto.hash_update(input_nonce <> params)
-          |> :crypto.hash_final
-          |> Base.encode16(case: :lower)
-
-    IO.puts "DIGEST"
-    IO.puts digest
-    @base_path <> method <> digest
+  defp generate_message(method, params) do
+    post_data = params |> URI.encode_query
+    digest = :crypto.hash(:sha256, params.nonce <> post_data)
+    uri = @base_path <> method
+    uri <> digest
   end
 end
